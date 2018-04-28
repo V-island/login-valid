@@ -1,0 +1,9 @@
+{
+  "name": "login",
+  "description": "尝试",
+  "main": "index.html",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
