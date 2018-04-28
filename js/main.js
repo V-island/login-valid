@@ -27,12 +27,14 @@ var Rules = /** @class */ (function () {
                         this.errorMsg = "邮箱输入错误";
                         return this.result = false;
                     }
+                    this.result = true;
                     break;
                 case "mobile":
                     if (this.checkMobile(value)) {
                         this.errorMsg = "手机号输入错误";
                         return this.result = false;
                     }
+                    this.result = true;
                     break;
             }
         }
@@ -56,16 +58,49 @@ var Rules = /** @class */ (function () {
     return Rules;
 }());
 var form = $("#login-main-form");
+var navTabs = $(".nav_tabs .navtab-link");
+//验证input输入框值
 form.find("input").each(function () {
     $(this).blur(function () {
         valiElment($(this));
     });
+});
+//表单提交验证所有值
+$(".login-button", form).click(function () {
+    var flag = true;
+    form.find("input").each(function () {
+        flag = flag && valiElment($(this));
+    });
+    if (flag) {
+        form.submit();
+    }
+});
+//Tabs
+navTabs.click(function () {
+    var _this = $(this);
+    var tabsContent = $(".tabs_content");
+    var i = "now";
+    if (!_this.hasClass(i)) {
+        var t = _this.data('tab');
+        navTabs.removeClass(i);
+        tabsContent.removeClass(i);
+        _this.addClass(i);
+        switch (t) {
+            case "pwd":
+                $(".tabs_content[data-con='pwd']").addClass(i);
+                break;
+            case "qr":
+                $(".tabs_content[data-con='qr']").addClass(i);
+                break;
+        }
+    }
 });
 var valiElment = function (el) {
     var result = new Rules(el);
     var groupBox = el.parents('.form-group');
     if (result.result) {
         groupBox.removeClass('error');
+        groupBox.find(".help-block").remove();
     }
     else {
         groupBox.find(".help-block").remove();

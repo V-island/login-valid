@@ -30,12 +30,14 @@ class Rules {
                         this.errorMsg = "邮箱输入错误";
                         return this.result = false;
                     }
+                    this.result = true;
                     break;
                 case "mobile":
                     if(this.checkMobile(value)) {
                         this.errorMsg = "手机号输入错误";
                         return this.result = false;
                     }
+                    this.result = true;
                     break;
             }
         }
@@ -60,6 +62,7 @@ class Rules {
 }
 
 let form = $("#login-main-form");
+let navTabs = $(".nav_tabs .navtab-link");
 //验证input输入框值
 form.find("input").each(function(){
     $(this).blur(function(){
@@ -78,11 +81,33 @@ $(".login-button", form).click(function() {
     }
 })
 
+//Tabs
+navTabs.click(function() {
+    let _this = $(this); 
+    let tabsContent = $(".tabs_content");
+    let i = "now";
+    if(!_this.hasClass(i)){
+        let t = _this.data('tab');
+        navTabs.removeClass(i);
+        tabsContent.removeClass(i);
+        _this.addClass(i);
+        switch (t) {
+            case "pwd":
+                $(".tabs_content[data-con='pwd']").addClass(i)
+                break;
+            case "qr":
+                $(".tabs_content[data-con='qr']").addClass(i)
+                break;
+        }
+    }
+})
+
 let valiElment = function(el : any) {
     let result = new Rules(el);
     let groupBox = el.parents('.form-group');
     if(result.result) {
         groupBox.removeClass('error');
+        groupBox.find(".help-block").remove();
     } else { 
         groupBox.find(".help-block").remove();
         groupBox.addClass('error');

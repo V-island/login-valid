@@ -74,7 +74,9 @@ body{
     .form-group{
         margin-bottom: 14px;
         &.error{
-            border-color: #ef5b00;
+            .labelbox{
+                border-color: #ef5b00;
+            }
         }
         .help-block{
             color: #ef5b00;
@@ -226,6 +228,25 @@ body{
     display: none;
     &.now{
         display: block;
+    }
+    .tab_qrcon{
+        text-align: center;
+        padding-top: 78px;
+        color: #757575;
+    }
+    .tow_qrcon{
+        background: url('../img/tow_qrcon.png');
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+    }
+    .custom_sub_txt{
+        padding-top: 14px;
+        font-size: 14px;
+        span{
+            padding: 0 5px;
+            color: #ff6700;
+        }
     }
 }
 

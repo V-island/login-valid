@@ -72,7 +72,7 @@ body {
 .layout .form-group {
   margin-bottom: 14px;
 }
-.layout .form-group.error {
+.layout .form-group.error .labelbox {
   border-color: #ef5b00;
 }
 .layout .form-group .help-block {
@@ -217,6 +217,25 @@ body {
 }
 .tabs_content.now {
   display: block;
+}
+.tabs_content .tab_qrcon {
+  text-align: center;
+  padding-top: 78px;
+  color: #757575;
+}
+.tabs_content .tow_qrcon {
+  background: url('../img/tow_qrcon.png');
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+.tabs_content .custom_sub_txt {
+  padding-top: 14px;
+  font-size: 14px;
+}
+.tabs_content .custom_sub_txt span {
+  padding: 0 5px;
+  color: #ff6700;
 }
 .icons {
   background: url('../img/icons_type.png');
