@@ -1,4 +1,9 @@
 "use strict";
+/**
+ * 验证输入内容
+ * @returns boolean result
+ * @returns string errorMsg
+ */
 var Rules = /** @class */ (function () {
     function Rules(value) {
         this.result = true;
