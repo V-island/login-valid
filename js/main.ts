@@ -1,12 +1,12 @@
 class Rules {
-    public result: boolean = true;
-    public errorMsg: string = "";
+    public result : boolean = true;
+    public errorMsg : string = "";
 
-    constructor(value: any) {
+    constructor(value : any) {
         this.validateField(value);
     }
     
-    private validateField(field: any) {
+    private validateField(field : any) {
         let el = $(field);
 
         //验证非空表单
@@ -42,28 +42,40 @@ class Rules {
     }
 
     //验证是否为整数
-    private checkInt(value: any) {
+    private checkInt(value : any) {
         return (!/^[0-9]\d*$/.test(value));
     }
     //验证是否为数字
-    private checkNumber(value: any) {
+    private checkNumber(value : any) {
         return (!/^-?(?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(value));
     }
     //验证邮箱
-    private checkEmail(value: any) {
+    private checkEmail(value : any) {
         return (!/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(value));
     }
     //验证手机号
-    private checkMobile(value: any) {
+    private checkMobile(value : any) {
         return (!/^0?(13[0-9]|15[0-9]|17[0678]|18[0-9]|14[57])[0-9]{8}$/.test(value));
     }
 }
 
 let form = $("#login-main-form");
+//验证input输入框值
 form.find("input").each(function(){
     $(this).blur(function(){
         valiElment($(this));
     })
+})
+
+//表单提交验证所有值
+$(".login-button", form).click(function() {
+    let flag : boolean = true;
+    form.find("input").each(function(){
+        flag = flag && valiElment($(this));
+    })
+    if(flag) {
+        form.submit();
+    }
 })
 
 let valiElment = function(el : any) {
